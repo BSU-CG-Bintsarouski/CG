@@ -2,7 +2,7 @@ import re
 import colorsys
 import PySimpleGUI as sg
 
-sg.theme('DarkGreen')
+sg.theme('DarkGreen') 
 
 tab1_layout =  [
     [sg.Text('CMYK', font=('Helvetica', 24)), 
