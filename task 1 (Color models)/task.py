@@ -4,6 +4,11 @@ import PySimpleGUI as sg
 
 sg.theme('DarkGreen') 
 
+bottomX = 10
+bottomY = 50
+upperX = 1685
+upperY = 400
+
 tab1_layout =  [
     [sg.Text('CMYK', font=('Helvetica', 24)), 
      sg.Text('C', font=('Helvetica', 24)), sg.InputText(key='T_CMYK_C', enable_events=True, default_text='0', font=('Helvetica', 24)), 
@@ -54,13 +59,8 @@ layout = [
         sg.Tab('Text', tab1_layout), 
         sg.Tab('Palette', tab3_layout)
     ]], font=('Helvetica', 36))],
-    [sg.Graph(canvas_size=(600, 300), graph_bottom_left=(0, 0), graph_top_right=(600, 400), key="graph"), Output_layout]
+    [sg.Graph(canvas_size=(upperX, upperY), graph_bottom_left=(0, 0), graph_top_right=(upperX, upperY), key="graph"), Output_layout]
 ]
-
-bottomX = 10
-bottomY = 50
-upperX = 450
-upperY = 400
 
 def RGBSlider(window):
     r = float(values['SL_RGB_R']) / 2.55
