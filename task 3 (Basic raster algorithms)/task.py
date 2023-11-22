@@ -2,7 +2,11 @@ import time
 import tkinter as tk
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
+from AppKit import NSColor, NSScreen
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+
+screen = NSScreen.mainScreen()
+color = NSColor.windowBackgroundColor().colorUsingColorSpaceName_('NSCalibratedRGBColorSpace').getRed_green_blue_alpha_(None, None, None, None)
 
 class LineDrawingApp:
     def __init__(self, root):
@@ -12,7 +16,7 @@ class LineDrawingApp:
         self.frame = tk.Frame(self.root, bg='white')
         self.frame.pack(fill=tk.BOTH, expand=True)
 
-        self.fig = Figure(figsize=(5, 4), dpi=100)
+        self.fig = Figure(figsize=(5, 4), dpi=100, facecolor=color)
         self.ax = self.fig.add_subplot(111)
         self.canvas = FigureCanvasTkAgg(self.fig, master=self.frame)
         self.canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
@@ -127,10 +131,10 @@ class LineDrawingApp:
             x_coords, y_coords = smooth_x_coords, smooth_y_coords
 
         self.ax.clear()
-        self.ax.plot(x_coords, y_coords, 'ro-')
-        self.ax.set_title(f"{algorithm.__name__} Line Algorithm {'(Smooth)' if smooth else ''}")
-        self.ax.set_xlabel('X')
-        self.ax.set_ylabel('Y')
+        self.ax.plot(x_coords, y_coords, 'ro-', color='green')
+        self.ax.set_title(f"{algorithm.__name__} Line Algorithm {'(Smooth)' if smooth else ''}", color='white')
+        self.ax.set_xlabel('X', color='white')
+        self.ax.set_ylabel('Y', color='white')
         self.ax.grid(True)
 
         self.canvas.draw()
